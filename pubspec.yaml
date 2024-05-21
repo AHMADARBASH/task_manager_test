@@ -38,24 +38,15 @@ dependencies:
   http: 
   fluttericon: 
   shared_preferences:
-  flutter_native_splash:
   flutter_bloc:
   bloc:
-  intl: 
   sizer: 
   animate_do: 
-  google_fonts: 
-  cached_network_image: 
+  google_fonts:  
   flutter_spinkit: 
   sqflite: 
-  flutter_animate:
   flutter_svg:
   go_router: ^13.2.1
-  flutter_bounce: ^1.1.0
-  firebase_core: ^2.28.0
-  firebase_messaging: ^14.8.0
-  firebase_analytics: ^10.10.2
-  flutter_local_notifications: ^17.0.1
   get_it:
   permission_handler: ^11.3.0
   mocktail: ^1.0.3
