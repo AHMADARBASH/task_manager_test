@@ -14,10 +14,12 @@ class TodosCubit extends Cubit<TodosState> {
   int currentPage = 0;
   int todosLimit = 0;
 
+  //general error handler function
   Future<void> errorHandler(dynamic error) async {
     if (error is ServerException) {
       emit(TodosErrorState(errorMessage: error.toString()));
     } else if (error is SocketException) {
+      //load local Todos incase of connection problems
       final localTodos =
           await DatabaseHelper.getDatafromDatabase(tableName: 'todo');
       if (localTodos.isNotEmpty) {
@@ -42,6 +44,7 @@ class TodosCubit extends Cubit<TodosState> {
       emit(TodosLoadingState());
       todosLimit = await _todosRepo.getUserTotalTodos(userId: userId);
       late List<Todo> todos;
+      //load data for the first time
       if (operaiton == Operation.initial) {
         currentPage = 0;
         todos = await _todosRepo.getTodosByUserId(
@@ -51,6 +54,7 @@ class TodosCubit extends Cubit<TodosState> {
         todos = await _todosRepo.getTodosByUserId(
             userId: userId, pageNumber: currentPage);
       } else {
+        //first page logic handling when press previous
         currentPage = currentPage > 1 ? currentPage -= 1 : 0;
         todos = await _todosRepo.getTodosByUserId(
             userId: userId, pageNumber: currentPage);
@@ -90,13 +94,16 @@ class TodosCubit extends Cubit<TodosState> {
       if (e is ServerException) {
         emit(TodosErrorState(errorMessage: e.toString()));
       } else if (e is SocketException) {
+        //update the Todo localy
         var localTodos =
             await DatabaseHelper.getDatafromDatabase(tableName: 'todo');
         if (localTodos.isNotEmpty) {
           var localTodo = localTodos.firstWhere(
             (element) => element['id'] == todoId,
           );
+          //get the wanted Todo and mapping to new object to avoid Read-Only Error
           var test = Map.of(localTodo);
+          //change completion status
           test['completed'] == 1
               ? test['completed'] = 0
               : test['completed'] = 1;
@@ -105,6 +112,7 @@ class TodosCubit extends Cubit<TodosState> {
             tableName: 'todo',
             data: test,
           );
+          //fetch the new Data
           var data =
               await DatabaseHelper.getDatafromDatabase(tableName: 'todo');
           final updatedLocalTodos =
@@ -130,6 +138,7 @@ class TodosCubit extends Cubit<TodosState> {
       if (e is ServerException) {
         emit(TodosErrorState(errorMessage: e.toString()));
       } else if (e is SocketException) {
+        //delete Todo Locally  incase of connection problems
         await DatabaseHelper.deletefromDatabase(id: todoId, tableName: 'todo');
       } else {
         emit(TodosErrorState(errorMessage: e.toString()));

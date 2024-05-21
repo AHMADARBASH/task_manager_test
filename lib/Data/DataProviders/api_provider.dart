@@ -56,7 +56,9 @@ class APIProvider {
       }
       if (response.statusCode == 401) {
         try {
+          //refresh the token incase of Unauthorization
           refreshSession();
+          //request the data again
           return get(URL: URL, token: token);
         } catch (e) {
           throw UnauthorizedException(message: 'Unauthorized');
@@ -103,7 +105,9 @@ class APIProvider {
             message: 'Internal Server Error \n code: ${response.statusCode}');
       } else if (response.statusCode == 401) {
         try {
+          //refresh the token incase of Unauthorization
           refreshSession();
+          //post the data again
           return post(URL: URL, body: body, token: token);
         } catch (e) {
           throw UnauthorizedException(message: 'Unauthorized');
