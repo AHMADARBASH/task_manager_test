@@ -11,17 +11,17 @@ Project State Managemnet: BLoC/Cubit
 
 Additional Packages:
 
-  http:                     //http client
-  fluttericon:              //additional Icons
-  shared_preferences:       //local storage 
-  flutter_bloc:             //BLoC State Management Library
-  bloc:                     //BLoC State Management Library
-  sizer:                    // Responisve Desgin library
-  animate_do:               // Animation Package
-  google_fonts:             
-  flutter_spinkit:          //Loading Widget Package
-  sqflite:                  //Local SQL Database Storage 
-  flutter_svg:              // Preview SVG inside the app
-  go_router: ^13.2.1        //Navigation Management Package
-  get_it:                   //Dependecy Incjection
+  http:                     //http client  <br />
+  fluttericon:              //additional Icons <br />
+  shared_preferences:       //local storage  <br />
+  flutter_bloc:             //BLoC State Management Library <br />
+  bloc:                     //BLoC State Management Library <br />
+  sizer:                    // Responisve Desgin library <br />
+  animate_do:               // Animation Package <br />
+  google_fonts:              <br />
+  flutter_spinkit:          //Loading Widget Package <br />
+  sqflite:                  //Local SQL Database Storage  <br />
+  flutter_svg:              // Preview SVG inside the app <br />
+  go_router: ^13.2.1        //Navigation Management Package <br />
+  get_it:                   //Dependecy Incjection <br />
 
