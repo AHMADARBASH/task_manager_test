@@ -3,7 +3,6 @@ import 'package:task_manager/Data/DataProviders/cached_data.dart';
 import 'package:task_manager/Data/Models/todo.dart';
 import 'package:task_manager/Data/constants/url.dart';
 import 'package:task_manager/Utilities/locator.dart';
-import 'dart:math' as math;
 
 class TodosRepository {
   var apiProvider = locator.get<APIProvider>();
@@ -30,9 +29,7 @@ class TodosRepository {
   Future<List<Todo>> getTodosByUserId(
       {required int userId, required int pageNumber}) async {
     int skip = 3 * pageNumber - 1;
-    // print(skip);
     final url = '$baseURL/todos/user/$userId?limit=3&skip=$skip';
-    print(url);
     Map<String, dynamic> respone =
         await apiProvider.get(URL: url, token: userToken);
     List<dynamic> data = respone['todos'];

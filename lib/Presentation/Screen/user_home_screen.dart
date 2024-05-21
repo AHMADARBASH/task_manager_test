@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,9 +41,9 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     super.initState();
   }
 
-  TextEditingController _titleController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
   bool _Completed = false;
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     int currentPage = context.watch<TodosCubit>().currentPage;
@@ -84,7 +86,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: CustomTextField(
-                          lable: Text('Task Title'),
+                          lable: const Text('Task Title'),
                           action: TextInputAction.done,
                           controller: _titleController,
                           isPassword: false,
@@ -158,7 +160,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                   }
                                 });
                           },
-                          child: Text('Add'))
+                          child: const Text('Add'))
                     ],
                   ),
                 ),
@@ -172,7 +174,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             },
           );
         },
-        child: Icon(Entypo.list_add),
+        child: const Icon(Entypo.list_add),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -185,7 +187,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                         SizedBox(
                           height: 40.h,
                         ),
-                        LoadingWidget(),
+                        const LoadingWidget(),
                       ],
                     )
                   : state is TodosErrorState
@@ -342,7 +344,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                             userId: user.id,
                                             operaiton: Operation.previous);
                                   },
-                                  icon: Icon(Icons.arrow_back_ios_new),
+                                  icon: const Icon(Icons.arrow_back_ios_new),
                                   color: currentPage <= 0
                                       ? Colors.grey
                                       : context.secondaryColor,
@@ -357,7 +359,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                                             userId: user.id,
                                             operaiton: Operation.next);
                                   },
-                                  icon: Icon(Icons.arrow_forward_ios),
+                                  icon: const Icon(Icons.arrow_forward_ios),
                                   color: currentPage + 1 == userLimit
                                       ? Colors.grey
                                       : context.secondaryColor,

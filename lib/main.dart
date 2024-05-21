@@ -18,7 +18,7 @@ void main() async {
   await DatabaseHelper.createDatabase();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   locatorSetup();
-  runApp(TaskManager());
+  runApp(const TaskManager());
 }
 
 class TaskManager extends StatelessWidget {

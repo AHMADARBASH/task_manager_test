@@ -20,7 +20,7 @@ final router = GoRouter(
       path: SettingsScreen.routeName,
       name: SettingsScreen.routeName,
       pageBuilder: (context, state) =>
-          RightSlideTranstionAnimation(child: SettingsScreen()),
+          RightSlideTranstionAnimation(child: const SettingsScreen()),
     ),
   ],
 );

@@ -20,7 +20,7 @@ class APIProvider {
       url,
       headers: headers,
     )
-        .timeout(Duration(seconds: 10), onTimeout: () {
+        .timeout(const Duration(seconds: 10), onTimeout: () {
       throw ServerException(message: 'Time out');
     });
 
@@ -55,7 +55,6 @@ class APIProvider {
         throw EmptyException(message: 'Not Found');
       }
       if (response.statusCode == 401) {
-        print("-----------   Unauthorized   -----------");
         try {
           refreshSession();
           return get(URL: URL, token: token);
@@ -103,7 +102,6 @@ class APIProvider {
         throw ServerException(
             message: 'Internal Server Error \n code: ${response.statusCode}');
       } else if (response.statusCode == 401) {
-        print("-----------   Unauthorized   -----------");
         try {
           refreshSession();
           return post(URL: URL, body: body, token: token);
